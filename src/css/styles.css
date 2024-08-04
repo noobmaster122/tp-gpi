@@ -1,1 +1,15 @@
-/*hey there*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.custom-class {
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+/*  */
