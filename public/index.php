@@ -1,5 +1,6 @@
 <?php
-function getBaseUrl() {
+function getBaseUrl()
+{
     // Check if the request is secure (HTTPS) or not
     $isSecure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
 
@@ -20,7 +21,9 @@ function getBaseUrl() {
     // Concatenate and return the base URL
     return $protocol . $host . $firstFolder;
 }
+
 define("GPI_PROJECT_ROOT_FOLDER", getBaseUrl());
+define("GPI_PROJECT_ROOT_FOLDER_URI", realpath(__DIR__ . '/..'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,10 +35,11 @@ define("GPI_PROJECT_ROOT_FOLDER", getBaseUrl());
     <link href="./css/styles.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
+<body>
+
     <!-- Header -->
-    <?php require_once "../views/layouts/header.php"; ?>
-    
+    <?php require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/header.php"; ?>
+
     <!-- Main Content -->
     <main class="container mx-auto py-8 px-6">
         <div class="flex">
@@ -72,110 +76,43 @@ define("GPI_PROJECT_ROOT_FOLDER", getBaseUrl());
                     </ul>
                 </div>
             </aside>
-            
+
             <!-- Products -->
-            <section class="w-3/4 ml-6">
-                <div class="bg-gray-200 h-52 flex items-center justify-center mb-6">Banner 880 x 208px</div>
-                <div class="flex items-center justify-between mb-4">
-                    <span>150 item(s)</span>
-                    <div class="flex items-center space-x-2">
-                        <button class="p-2 bg-gray-300 rounded">Grid</button>
-                        <button class="p-2 bg-gray-300 rounded">List</button>
-                    </div>
-                </div>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="bg-white shadow-sm p-4 text-center">
-                        <div class="bg-gray-300 h-40 mb-4">160 x 206</div>
-                        <h3 class="text-lg font-semibold">Voluptatem Accusantium Doloremque</h3>
-                        <p class="text-gray-600">$20.00</p>
-                        <button class="mt-2 py-2 px-4 bg-blue-600 text-white rounded">Add to Cart</button>
-                    </div>
-                    <div class="bg-white shadow-sm p-4 text-center">
-                        <div class="bg-gray-300 h-40 mb-4 relative">
-                            <span class="absolute top-0 right-0 bg-red-600 text-white px-2 py-1 text-sm">-20%</span>
-                        </div>
-                        <h3 class="text-lg font-semibold">Voluptatem Accusantium Doloremque</h3>
-                        <p class="text-gray-600 line-through">$20.00</p>
-                        <p class="text-red-600">$18.00</p>
-                        <button class="mt-2 py-2 px-4 bg-blue-600 text-white rounded">Add to Cart</button>
-                    </div>
-                    <div class="bg-white shadow-sm p-4 text-center">
-                        <div class="bg-gray-300 h-40 mb-4 relative">
-                            <span class="absolute top-0 right-0 bg-green-600 text-white px-2 py-1 text-sm">NEW</span>
-                        </div>
-                        <h3 class="text-lg font-semibold">Voluptatem Accusantium Doloremque</h3>
-                        <p class="text-gray-600">$20.00</p>
-                        <button class="mt-2 py-2 px-4 bg-blue-600 text-white rounded">Add to Cart</button>
-                    </div>
+            <section class="w-[880px] ml-6">
+                <?php require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/banner-component.php"; ?>
+                <div class="grid grid-cols-3 gap-6 mt-14">
+                    <?php
+                    (function (array $data) {
+                        require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/card-component.php";
+                    })(['title' => 'Voluptatem Accusantium Doloremque']);
+                    (function (array $data) {
+                        require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/card-component.php";
+                    })(['title' => 'Voluptatem Accusantium Doloremque', 'isDiscounted' => true]);
+                    (function (array $data) {
+                        require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/card-component.php";
+                    })(['title' => 'Voluptatem Accusantium Doloremque', 'isNew' => true]);
+                    ?>
                     <!-- Add more products as needed -->
                 </div>
-                <div class="flex items-center justify-center mt-6 space-x-2">
-                    <button class="px-4 py-2 bg-gray-300 rounded">1</button>
-                    <button class="px-4 py-2 bg-gray-300 rounded">2</button>
-                    <button class="px-4 py-2 bg-gray-300 rounded">3</button>
-                    <span>Next Page</span>
-                </div>
+                <?php
+                (function () {
+                    require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/pagination-component.php";
+                })();
+                ?>
             </section>
         </div>
     </main>
-    
+    <?php
+    (function () {
+        require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/publicite-banner-component.php";
+    })();
+    ?>
     <!-- Footer -->
-    <footer class="bg-white py-8 mt-6 shadow-inner">
-        <div class="container mx-auto grid grid-cols-4 gap-8">
-            <div>
-                <h3 class="font-semibold mb-2">SOFTMARKET</h3>
-                <ul class="space-y-1">
-                    <li><a href="#" class="text-gray-600">Contact Us</a></li>
-                    <li><a href="#" class="text-gray-600">Careers</a></li>
-                    <li><a href="#" class="text-gray-600">Shipping & Return</a></li>
-                    <li><a href="#" class="text-gray-600">Terms of Use</a></li>
-                    <li><a href="#" class="text-gray-600">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold mb-2">GLOBAL RESELLERS</h3>
-                <ul class="space-y-1">
-                    <li><a href="#" class="text-gray-600">United States</a></li>
-                    <li><a href="#" class="text-gray-600">England</a></li>
-                    <li><a href="#" class="text-gray-600">China</a></li>
-                    <li><a href="#" class="text-gray-600">Australia</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold mb-2">POPULAR CATEGORIES</h3>
-                <ul class="space-y-1">
-                    <li><a href="#" class="text-gray-600">Unic omins</a></li>
-                    <li><a href="#" class="text-gray-600">Ilea nas</a></li>
-                    <li><a href="#" class="text-gray-600">Sit voluptatem</a></li>
-                    <li><a href="#" class="text-gray-600">Accusantium</a></li>
-                    <li><a href="#" class="text-gray-600">Neque porro quisquam</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold mb-2">FROM OUR BLOG</h3>
-                <ul class="space-y-1">
-                    <li><a href="#" class="text-gray-600">Neque porro quisquam est</a></li>
-                    <li><a href="#" class="text-gray-600">Quis autem vel eum iure</a></li>
-                    <li><a href="#" class="text-gray-600">At vero eos et accusamus</a></li>
-                    <li><a href="#" class="text-gray-600">Temporibus autem aut</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container mx-auto flex items-center justify-between mt-8">
-            <div class="flex space-x-4">
-                <a href="#" class="text-gray-600">Facebook</a>
-                <a href="#" class="text-gray-600">Twitter</a>
-                <a href="#" class="text-gray-600">Youtube</a>
-                <a href="#" class="text-gray-600">RSS Feed</a>
-            </div>
-            <div class="flex space-x-4">
-                <a href="#" class="text-gray-600">PayPal</a>
-                <a href="#" class="text-gray-600">VISA</a>
-                <a href="#" class="text-gray-600">MasterCard</a>
-            </div>
-        </div>
-        <div class="text-center text-gray-600 mt-4">&copy; 2013 SoftMarket Magento Store by emthemes.com</div>
-    </footer>
+    <?php
+    (function () {
+        require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/footer.php";
+    })();
+    ?>
     <script src="./js/bundle.js"></script>
 </body>
 

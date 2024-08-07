@@ -11,5 +11,33 @@ body {
     background-color: #f3f4f6;
     color: #333;
 }
-
+.discount-circular-banner{
+    top: 1px;
+    right: 46px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /*  */
+
+.star-rating {
+    display: flex;
+}
+
+.half {
+    position: relative;
+    display: inline-block;
+    color: #9ca3af;
+}
+.half::before {
+    content: '\2605';
+    position: absolute;
+    overflow: hidden;
+    width: 50%;
+    color: #2563eb; 
+}
+.footer-custom{
+    background-color: #f2f6f9;
+}
