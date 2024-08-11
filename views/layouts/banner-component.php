@@ -1,4 +1,4 @@
-<div class="bg-gray-200 h-52 flex items-center justify-center mb-4">
+<div class=" h-52 flex items-start justify-center mb-4">
     <img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/img-03.png'; ?>" alt="website logo">
 </div>
 <div class="flex items-center justify-between mb-4 mx-4">

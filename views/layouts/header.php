@@ -1,5 +1,5 @@
-<header class="bg-white shadow-sm pb-8">
-    <div class="container mx-auto py-2 px-6 flex justify-between items-center">
+<header class="bg-white shadow-sm pb-8 ">
+    <div class="container mx-auto py-2 px-16 flex justify-between items-center">
         <div class="flex items-center space-x-4">
             <span class="text-gray-600 text-xs">Shop by Phone <span class="font-bold">(01) 123 456 SM</span></span>
             <a href="#" class="text-blue-600 text-xs font-semibold">Live Chat With Us</a>
@@ -16,7 +16,7 @@
             </svg>
         </div>
     </div>
-    <div class="container mx-auto py-4 px-6 flex justify-between items-center">
+    <div class="container mx-auto py-4 px-16 flex justify-between items-center">
         <div class="text-3xl font-bold text-blue-600"><img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/img-01.png'; ?>" alt="website logo"></div>
         <div class="flex justify-between itexms-center gap-10">
             <nav class="flex space-x-8 items-center">
