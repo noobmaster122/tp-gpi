@@ -1,4 +1,6 @@
-<?php require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/breadcrumbs-component.php"; ?>
+<?php (function (string $title) {
+    require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/breadcrumbs-component.php";
+})("Shopping Cart"); ?>
 <main class="container px-16 py-3  mx-auto">
     <!-- Success Message -->
     <div class="bg-[#d7efc1] border text-green-800 px-4 py-3 rounded mb-4 flex ">
@@ -29,8 +31,10 @@
                         <input type="text" value="1" class="border-2 w-12 py-1 text-center rounded-md">
                     </td>
                     <td class="px-6 py-4">$100.00</td>
-                    <td class="px-6 py-4 text-center">
-                        <button class=" text-black flex items-center justify-center w-6 h-6 border border-gray-400 rounded-full text-xl">&times;</button>
+                    <td class="px-6 py-4 text-center ">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <button class=" text-black flex items-center justify-center w-6 h-6 border border-gray-400 rounded-full text-xl">&times;</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -91,6 +95,6 @@
 </main>
 <?php
 (function () {
-    require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/publicite-banner-component.php";
+    require GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/publicite-banner-component.php";
 })();
 ?>

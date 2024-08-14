@@ -7,11 +7,11 @@
         <img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/img-04.png'; ?>" alt="website logo">
         <?php
         (function($options){
-            require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/rounded-dropdown-component.php";
+            require GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/rounded-dropdown-component.php";
         })(['15 per page', '20 per page']);
 
         (function($options){
-            require GPI_PROJECT_ROOT_FOLDER_URI . "/views/layouts/rounded-dropdown-component.php";
+            require GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/rounded-dropdown-component.php";
         })(['Position', 'Option 1', 'Option 2', 'Option 3']);
         ?>
         <img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/img-07.png'; ?>" alt="arrow up">

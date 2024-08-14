@@ -1,0 +1,32 @@
+{
+"products" : {
+    "abc": {
+        "isDiscounted" : true,
+        "isNew" :false,
+        "imageUrl" : "/public/assets/acdc.jpg",
+        "title":"ACDC - Back in Black",
+        "originalPrice": "50.99",
+        "discountedPrice": "45.99",
+        "rating": 5
+    },
+    "xyz": {
+        "isDiscounted" : true,
+        "isNew" :false,
+        "imageUrl" : "/public/assets/bruno-mars.jpg",
+        "title":"Bruno mars - Doo-Wops & Hooligans",
+        "originalPrice": "67.99",
+        "discountedPrice": "45.99",
+        "rating": 4
+    },
+    "ayz": {
+        "isDiscounted" : true,
+        "isNew" :false,
+        "imageUrl" : "/public/assets/james-blunt.jpg",
+        "title":"James Blunt - The Stars Beneath",
+        "originalPrice": "43.99",
+        "discountedPrice": "30.99",
+        "rating": 7
+    }
+}
+}
+  
