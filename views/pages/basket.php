@@ -45,9 +45,7 @@
         </table>
     </div>
 
-    <!-- Shipping, Coupon, and Order Total -->
     <div class="grid grid-cols-3 gap-6">
-        <!-- Estimate Shipping & Tax -->
         <div class=" p-4">
             <h3 class="text-lg font-semibold mb-4">Estimate Shipping & Tax</h3>
             <form>
@@ -67,7 +65,6 @@
             </form>
         </div>
 
-        <!-- Discount Coupon -->
         <div class=" p-4">
             <h3 class="text-lg font-semibold mb-4">Discount Coupon</h3>
             <form>
@@ -87,11 +84,11 @@
             <h3 class="text-lg font-semibold mb-4">Order Total</h3>
             <div class="mb-2 flex justify-between">
                 <span class="text-gray-700">Subtotal</span>
-                <span class="text-gray-700">$500.00</span>
+                <span class="text-gray-700"><?= '$' . $basketTotal; ?></span>
             </div>
             <div class="mb-4 flex justify-between text-xl font-semibold">
                 <span class="text-gray-900">Grand Total</span>
-                <span class="text-gray-900">$500.00</span>
+                <span class="text-gray-900"><?= '$' . $basketTotal; ?></span>
             </div>
             <button class="bg-blue-500 hover:bg-blue-600 text-white w-full py-2 rounded-md">Proceed to Checkout</button>
         </div>

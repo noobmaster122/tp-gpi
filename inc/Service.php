@@ -81,6 +81,19 @@ class Service
         return count($this->initSession('basket'));
     }
 
+    public function getBasketTotal(array $products):float
+    {
+        $total = 0;
+        foreach($products as $product){
+            if($product->isDiscounted){
+                $total += $product->discountedPrice * $product->quantity;
+            }else{
+                $total += $product->originalPrice * $product->quantity;
+            }
+        }
+        return $total;
+    }
+
     public function getBasketItemsIds():string
     {
         return implode(',', $this->initSession('basket'));
