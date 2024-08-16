@@ -7,7 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'GPI\\Controller' => $baseDir . '/inc/Controller.php',
     'GPI\\Model' => $baseDir . '/inc/Model.php',
     'GPI\\Service' => $baseDir . '/inc/Service.php',
-    'GPI\\SessionHandler' => $baseDir . '/inc/SessionHandler.php',
+    'GPI\\SessionModel' => $baseDir . '/inc/SessionModel.php',
 );

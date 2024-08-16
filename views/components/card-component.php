@@ -1,19 +1,24 @@
 <div class="inline-block w-[251px]  overflow-hidden relative">
-    <div class="flex relative items-center justify-center mb-2">
+    <div class="flex relative items-center justify-center mb-2 overflow-hidden">
         <?php if ($data?->isDiscounted) : ?>
             <div class=" discount-circular-banner  absolute bg-red-500 text-white rounded-full px-3 py-1 text-base font-thin">-20%</div>
         <?php endif; ?>
         <?php if ($data?->isNew) : ?>
             <div class=" discount-circular-banner absolute bg-green-500 text-white rounded-full px-3 py-1 text-base font-thin">NEW</div>
         <?php endif; ?>
-        <img src="<?= GPI_PROJECT_ROOT_FOLDER . $data?->imageUrl; ?>" class="w-[160px] h-[206px] object-cover" alt="product image">
+        <img src="<?= GPI_PROJECT_ROOT_FOLDER . $data?->imageUrl; ?>" class="w-[160px] h-[206px] object-cover hover:scale-125 transition duration-500 cursor-pointer " alt="product image">
     </div>
     <div class="mt-4">
         <span class=" text-sm font-semibold text-blue-600 whitespace-nowrap text-ellipsis"><?= $data?->title ?? 'Voluptatem Accusantium Doloremque'; ?></span>
     </div>
     <div class="mt- flex items-baseline space-x-2">
-        <span class="text-gray-400 line-through text-base"><?= $data?->originalPrice; ?></span>
-        <span class="text-red-500 text-xl font-bold"><?= $data?->discountedPrice; ?></span>
+        <?php if($data?->isDiscounted): ?>
+            <span class="text-gray-400 line-through text-base"><?= '$' . $data?->originalPrice; ?></span>
+            <span class="text-red-500 text-xl font-bold"><?= '$' . $data?->discountedPrice; ?></span>
+        <?php endif; ?>
+        <?php if(!$data?->isDiscounted): ?>
+            <span class="text-gray-400 text-base"><?= '$' . $data?->originalPrice; ?></span>
+        <?php endif; ?>
     </div>
     <div class="star-rating text-sm">
         <?php
@@ -38,7 +43,7 @@
         ?>
     </div>
     <div class="mt-4 flex justify-between">
-        <div>
+        <div class="add-to-cart cursor-pointer" data-id="<?= $data?->id; ?>">
             <img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/img-11.png'; ?>" alt="icon 1">
         </div>
         <div class="flex gap-1">

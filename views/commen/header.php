@@ -10,7 +10,7 @@
                 <path d="M10 14l-6-6h12l-6 6z"></path>
             </svg>
             <span class="">|</span>
-            <a href="#" class="text-blue-600 font-medium text-xs">My Cart (2)</a>
+            <a id="cart-link" href="?route=basket&basket=<?= $basketItemsIdsString ?? ''; ?>" class="text-blue-600 font-medium text-xs">My Cart <?= "(" . ($basketItemsCount ?? '0') . ')'; ?></a>
             <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 14l-6-6h12l-6 6z"></path>
             </svg>

@@ -22,9 +22,10 @@ class ComposerStaticInit1380b6253d6bdcd5ce92260931afdaf4
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'GPI\\Controller' => __DIR__ . '/../..' . '/inc/Controller.php',
         'GPI\\Model' => __DIR__ . '/../..' . '/inc/Model.php',
         'GPI\\Service' => __DIR__ . '/../..' . '/inc/Service.php',
-        'GPI\\SessionHandler' => __DIR__ . '/../..' . '/inc/SessionHandler.php',
+        'GPI\\SessionModel' => __DIR__ . '/../..' . '/inc/SessionModel.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -4,8 +4,20 @@ require './vendor/autoload.php';
 use GPI\Controller;
 use GPI\Model;
 use GPI\Service;
+use GPI\SessionModel;
 
-$appController = new Controller(new Service(new Model()));
+$appController = new Controller(new Service(new Model(), new SessionModel()));
+
+// echo "<pre>" . print_r($_SESSION, true) . "</pre>";
+//check ajax req handlers
+if(isset($_GET['ajax']) && $_GET['ajax'] === 'addCard'){
+   echo $appController->cardAdditionToBasket();
+   exit;
+}
+if(isset($_GET['ajax']) && $_GET['ajax'] === 'removeCard'){
+   echo $appController->cardRemovalFromBasket();
+   exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +31,6 @@ $appController = new Controller(new Service(new Model()));
 </head>
 
 <body>
-
-    <!-- Header -->
-    <?php require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/commen/header.php"; ?>
     <?php 
         if(isset($_GET['route']) && $_GET['route'] === 'home'){
             echo $appController->homeViewController();
@@ -31,8 +40,6 @@ $appController = new Controller(new Service(new Model()));
             echo $appController->homeViewController();
         }
     ?>
-    <!-- Footer -->
-    <?php require GPI_PROJECT_ROOT_FOLDER_URI . "/views/commen/footer.php"; ?>
     <script src="./public/js/bundle.js"></script>
 </body>
 

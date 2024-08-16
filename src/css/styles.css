@@ -137,7 +137,7 @@ body {
   
   .range_container .sliders_control {
     position: relative;
-    min-height: 30px;
+    min-height: 15px;
   }
   
   .range_container .form_control {

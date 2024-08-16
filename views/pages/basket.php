@@ -1,3 +1,5 @@
+<?php require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/commen/header.php"; ?>
+
 <?php (function (string $title) {
     require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/breadcrumbs-component.php";
 })("Shopping Cart"); ?>
@@ -21,22 +23,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b divide-x">
-                    <td class="px-6 py-4 flex items-center">
-                        <img src="<?= GPI_PROJECT_ROOT_FOLDER . '/public/assets/cart.png'; ?>" width="70px" height="90px" alt="Item Image" class=" mr-4">
-                        <span class="text-blue-600">Nam Tempus Dictumirsib</span>
-                    </td>
-                    <td class="px-6 py-4">$100.00</td>
-                    <td class="px-6 py-4">
-                        <input type="text" value="1" class="border-2 w-12 py-1 text-center rounded-md">
-                    </td>
-                    <td class="px-6 py-4">$100.00</td>
-                    <td class="px-6 py-4 text-center ">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <button class=" text-black flex items-center justify-center w-6 h-6 border border-gray-400 rounded-full text-xl">&times;</button>
-                        </div>
-                    </td>
-                </tr>
+                <?php foreach ($productsArr as $product): ?>
+                    <tr class="border-b divide-x">
+                        <td class="px-6 py-4 flex items-center">
+                            <img src="<?= GPI_PROJECT_ROOT_FOLDER . $product?->imageUrl; ?>" alt="Item Image" class="w-[70px] h-[90px] object-cover mr-4">
+                            <span class="text-blue-600"><?= $product?->title; ?></span>
+                        </td>
+                        <td class="px-6 py-4"><?= $product?->isDiscounted ? $product?->discountedPrice : $product?->originalPrice; ?></td>
+                        <td class="px-6 py-4">
+                            <input type="text" value="<?= $product?->quantity; ?>" class="border-2 w-12 py-1 text-center rounded-md">
+                        </td>
+                        <td class="px-6 py-4"><?= $product?->isDiscounted ? $product?->discountedPrice * $product?->quantity : $product?->originalPrice * $product?->quantity; ?></td>
+                        <td class="px-6 py-4 text-center ">
+                            <div class="w-full h-full flex items-center justify-center ">
+                                <button class="delete-product text-black flex items-center justify-center w-6 h-6 border border-gray-400 rounded-full text-xl" data-id="<?= $product?->id; ?>">&times;</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -98,3 +102,5 @@
     require GPI_PROJECT_ROOT_FOLDER_URI . "/views/components/publicite-banner-component.php";
 })();
 ?>
+
+<?php require GPI_PROJECT_ROOT_FOLDER_URI . "/views/commen/footer.php"; ?>

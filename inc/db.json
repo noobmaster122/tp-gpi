@@ -7,6 +7,8 @@
         "title":"ACDC - Back in Black",
         "originalPrice": "50.99",
         "discountedPrice": "45.99",
+        "category" : "Rock",
+        "subCategory" : "Hard Rock",
         "rating": 5
     },
     "xyz": {
@@ -16,6 +18,8 @@
         "title":"Bruno mars - Doo-Wops & Hooligans",
         "originalPrice": "67.99",
         "discountedPrice": "45.99",
+        "category" : "RnB",
+        "subCategory" : "RnB",
         "rating": 4
     },
     "ayz": {
@@ -25,7 +29,31 @@
         "title":"James Blunt - The Stars Beneath",
         "originalPrice": "43.99",
         "discountedPrice": "30.99",
+        "category" : "Rock",
+        "subCategory" : "Folk Rock",
         "rating": 7
+    },
+    "abd": {
+        "isDiscounted" : false,
+        "isNew" :false,
+        "imageUrl" : "/public/assets/iam.jpg",
+        "title":"IAM - L'école du micro d'argent",
+        "originalPrice": "50.99",
+        "discountedPrice": "45.99",
+        "category" : "Rap",
+        "subCategory" : "Rap Francais",
+        "rating": 5
+    },
+    "pbd": {
+        "isDiscounted" : false,
+        "isNew" :true,
+        "imageUrl" : "/public/assets/dre.jpg",
+        "title":"Dr Dre - 2001",
+        "originalPrice": "50.99",
+        "discountedPrice": "45.99",
+        "category" : "Rap",
+        "subCategory" : "Rap USA",
+        "rating": 8
     }
 }
 }

@@ -14,11 +14,34 @@ class Controller
         $this->appService = $appService;
     }
 
+    private function handleCors(): void
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+
+        // Handle preflight requests
+        // if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        //     http_response_code(200);
+        //     exit;
+        // }
+    }
+
     public function homeViewController():string
     {
        
-        //echo "<pre>" . print_r($this->appService->loadProducts(), true) . "</pre>";
         $productsArr = $this->appService->loadProducts();
+        $categoriesArr = $this->appService->getCategories();
+        $basketItemsCount = $this->appService->getBasketCount();
+        $basketItemsIdsString = $this->appService->getBasketItemsIds();
+
+        if(isset($_GET['subcat'])){
+            $productsArr = $this->appService->getByCategory($_GET['subcat']);
+        }else if(isset($_GET['isDiscounted'])){
+            $productsArr = $this->appService->getDiscountedProducts();
+        }else if(isset($_GET['isNew'])){
+            $productsArr = $this->appService->getNewProducts();
+        }
 
         ob_start();
         require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/pages/home.php";
@@ -27,9 +50,31 @@ class Controller
 
     public function basketViewController():string
     {
+
+        $basketItemsCount = $this->appService->getBasketCount();
+        $basketItemsIdsString = $this->appService->getBasketItemsIds();
+
+        $productsArr = $this->appService->getBasketProducts($basketItemsIdsString);
+        $productsArr = $this->appService->aggregateProductQuantities($productsArr);
+
         ob_start();
         require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/pages/basket.php";
         return ob_get_clean();
+    }
+
+    public function cardAdditionToBasket():string
+    {
+        $this->handleCors();
+
+        if(!isset($_GET['newCard']) || !$_GET['newCard']) exit;
+        return json_encode($this->appService->updateSession('basket', $_GET['newCard']));
+    }
+    public function cardRemovalFromBasket():string
+    {
+        $this->handleCors();
+
+        if(!isset($_GET['cardToRemove']) || !$_GET['cardToRemove']) return '';
+        return json_encode($this->appService->removeFromSession('basket', $_GET['cardToRemove']));
     }
 
 }
