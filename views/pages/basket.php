@@ -31,7 +31,7 @@
                         </td>
                         <td class="px-6 py-4"><?= $product?->isDiscounted ? $product?->discountedPrice : $product?->originalPrice; ?></td>
                         <td class="px-6 py-4">
-                            <input type="text" value="<?= $product?->quantity; ?>" class="border-2 w-12 py-1 text-center rounded-md">
+                            <input type="text" value="<?= $product?->quantity; ?>" name="productQt" data-id="<?= $product?->id; ?>" class="border-2 w-12 py-1 text-center rounded-md">
                         </td>
                         <td class="px-6 py-4"><?= $product?->isDiscounted ? $product?->discountedPrice * $product?->quantity : $product?->originalPrice * $product?->quantity; ?></td>
                         <td class="px-6 py-4 text-center ">
@@ -84,11 +84,11 @@
             <h3 class="text-lg font-semibold mb-4">Order Total</h3>
             <div class="mb-2 flex justify-between">
                 <span class="text-gray-700">Subtotal</span>
-                <span class="text-gray-700"><?= '$' . $basketTotal; ?></span>
+                <span class="text-gray-700 basket-total"><?= '$' . $basketTotal; ?></span>
             </div>
             <div class="mb-4 flex justify-between text-xl font-semibold">
                 <span class="text-gray-900">Grand Total</span>
-                <span class="text-gray-900"><?= '$' . $basketTotal; ?></span>
+                <span class="text-gray-900 basket-total"><?= '$' . $basketTotal; ?></span>
             </div>
             <button class="bg-blue-500 hover:bg-blue-600 text-white w-full py-2 rounded-md">Proceed to Checkout</button>
         </div>

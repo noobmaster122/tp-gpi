@@ -1,12 +1,12 @@
 import $ from 'jquery';
+import {AjaxService} from './AjaxService'; // Adjust the path as needed
 
-class BasketManager {
-    constructor(basketLinkSelector, productAddBtnSelector, deleteBtnSelector) {
+export class BasketManager {
+    constructor(ajaxService, basketLinkSelector, productAddBtnSelector, deleteBtnSelector) {
         this.productIds = [];
-        this.cartLink = $(basketLinkSelector); 
+        this.cartLink = $(basketLinkSelector);
 
-        // Set the base URL dynamically 
-        this.apiUrl = `${window.location.protocol}//${window.location.host}/`;
+        this.ajaxService = ajaxService;
 
         $(() => {
             $(productAddBtnSelector).on('click', (event) => this.productAdditionClick(event));
@@ -22,33 +22,27 @@ class BasketManager {
             this.productIds.push(productId);
         }
 
-        this.performAjaxRequest('addCard', { newCard: productId }, (response) => {
+        this.ajaxService.performRequest('addCard', { newCard: productId }, (response) => {
             this.updateHomeCartUI(JSON.parse(response));
         });
     }
 
     handleProductDeletion(productId, row) {
-        this.performAjaxRequest('removeCard', { cardToRemove: productId }, (response) => {
-
+        this.ajaxService.performRequest('removeCard', { cardToRemove: productId }, (response) => {
             this.updateHomeCartUI(JSON.parse(response));
-            console.log("res", response);
 
             if (row.length) {
                 row.remove();
             }
+
+            this.updateBasketTotal(); 
         });
     }
 
-    performAjaxRequest(action, params, onSuccess) {
-        const queryString = $.param(params);
-
-        $.ajax({
-            url: `${this.apiUrl}?ajax=${action}&${queryString}`,
-            method: 'GET',
-            success: onSuccess,
-            error: (xhr, status, error) => {
-                console.error('AJAX request failed:', status, error);
-            }
+    updateBasketTotal() {
+        this.ajaxService.performRequest('getBasketTotal', {}, (response) => {
+            const total = JSON.parse(response);
+            this.updateTotalUI(total);
         });
     }
 
@@ -68,12 +62,14 @@ class BasketManager {
                 const productId = button.data('id'); 
                 const row = button.closest('tr'); 
 
-                console.log(productId, row);
-
                 this.handleProductDeletion(productId, row); 
             });
         });
     }
+
+    updateTotalUI(total) {
+        $('.basket-total').text(`$${total}`);
+    }
 }
 
-const basketManager = new BasketManager('#cart-link', '.add-to-cart', '.delete-product');
+const basketManager = new BasketManager(new AjaxService(`${window.location.protocol}//${window.location.host}/`), '#cart-link', '.add-to-cart', '.delete-product');

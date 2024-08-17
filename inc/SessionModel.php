@@ -79,6 +79,27 @@ class SessionModel
              $this->set($key, $array);
          }
      }
+
+     public function updateProductQuantity(string $productId, int $quantity):array
+     {
+         $basket = $this->get('basket');
+ 
+         if (!is_array($basket)) {
+             $basket = [];
+         }
+ 
+         $basket = array_filter($basket, function($item) use ($productId) {
+             return $item !== $productId;
+         });
+ 
+         for ($i = 0; $i < $quantity; $i++) {
+             $basket[] = $productId;
+         }
+ 
+         $this->set('basket', array_values($basket));
+
+         return $this->get('basket');
+     }
 }
 
 ?>

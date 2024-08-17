@@ -118,5 +118,10 @@ class Service
         return array_values($result);
     }
 
+    public function updateProductQtInBasket(string $productId, int $quantity):array
+    {
+        return $this->sessionModel->updateProductQuantity( $productId, $quantity);
+    }
+
 
 }

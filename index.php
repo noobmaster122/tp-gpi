@@ -18,6 +18,14 @@ if(isset($_GET['ajax']) && $_GET['ajax'] === 'removeCard'){
    echo $appController->cardRemovalFromBasket();
    exit;
 }
+if(isset($_GET['ajax']) && $_GET['ajax'] === 'updateQuantity'){
+    echo $appController->productQuantityModificationInBasket();
+    exit;
+ }
+ if(isset($_GET['ajax']) && $_GET['ajax'] === 'getBasketTotal'){
+    echo $appController->getBasketTotal();
+    exit;
+ }
 ?>
 
 <!DOCTYPE html>

@@ -37,7 +37,6 @@ class Controller
 
     public function basketViewController():string
     {
-
         $basketItemsCount = $this->appService->getBasketCount();
         $basketItemsIdsString = $this->appService->getBasketItemsIds();
 
@@ -48,6 +47,14 @@ class Controller
         ob_start();
         require_once GPI_PROJECT_ROOT_FOLDER_URI . "/views/pages/basket.php";
         return ob_get_clean();
+    }
+
+    public function getBasketTotal():string
+    {
+        $basketItemsIdsString = $this->appService->getBasketItemsIds();
+        $productsArr = $this->appService->getBasketProducts($basketItemsIdsString);
+        $productsArr = $this->appService->aggregateProductQuantities($productsArr);
+        return json_encode($this->appService->getBasketTotal($productsArr));
     }
 
     public function cardAdditionToBasket():string
@@ -61,6 +68,13 @@ class Controller
 
         if(!isset($_GET['cardToRemove']) || !$_GET['cardToRemove']) return '';
         return json_encode($this->appService->removeFromSession('basket', $_GET['cardToRemove']));
+    }
+    public function productQuantityModificationInBasket():string
+    {
+        if(!isset($_GET['quantity']) || !$_GET['quantity']) return '';
+        if(!isset($_GET['productId']) || !$_GET['productId']) return '';
+
+        return json_encode($this->appService->updateProductQtInBasket($_GET['productId'], (int)$_GET['quantity']));
     }
 
 }
