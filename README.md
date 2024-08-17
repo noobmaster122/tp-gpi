@@ -9,6 +9,34 @@
 
 ---
 
+#### Implemented functionalities 
+
+-  La navigation par le
+ pavé des catégories (avec 
+slide up et down de la 
+structure des catégories)
+
+- L’affichage des
+ vignettes des produits
+ correspondants à la 
+catégorie sélectionnée
+
+-  L’ajout au panier par
+ le bouton [add to cart]
+
+- Zoom sur l’image au
+ passage de la souris
+ sur la vignette
+
+- Suppression de l’article au moyen de la petite croix sur sa ligne de chaque produit : ne recharge pas la page complète, faire appel à AJAX via jQuery pour mettre à jour les 
+montants
+
+- la modification des
+ quantités met à jour le 
+sous total par ligne de 
+produit et le total général 
+du caddie
+
 #### Project architecture
 
 ###### PHP
